@@ -8,7 +8,7 @@ spec:
     namespace: app-of-apps
     server: 'https://kubernetes.default.svc'
   source:
-    path: dev
+    path: .
     repoURL: 'https://github.com/johncosta/gitops-examples'
     targetRevision: HEAD
   sources: []
