@@ -1,7 +1,7 @@
 project: default
 source:
   repoURL: 'https://github.com/johncosta/gitops-examples'
-  path: dev
+  path: dev/apps
   targetRevision: HEAD
 destination:
   server: 'https://kubernetes.default.svc'
