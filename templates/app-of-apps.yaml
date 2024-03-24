@@ -1,19 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bootstrap
+  name: prometheus-stack
 spec:
-  destination:
-    name: ''
-    namespace: app-of-apps
-    server: 'https://kubernetes.default.svc'
-  source:
-    path: dev
-    repoURL: 'https://github.com/johncosta/gitops-examples'
-    targetRevision: HEAD
-  sources: []
   project: default
+  source:
+    repoURL: 'https://github.com/johncosta/gitops-examples'
+    path: .
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
   syncPolicy:
-    automated: {}
-    syncOptions:
-    - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
