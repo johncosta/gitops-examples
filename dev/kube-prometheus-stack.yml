@@ -4,7 +4,6 @@ metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io
   name: kube-prometheus-stack
-  namespace: argocd
 spec:
   destination:
     namespace: monitoring
