@@ -1,20 +1,19 @@
-project: default
-source:
-  repoURL: 'https://prometheus-community.github.io/helm-charts'
-  targetRevision: 57.1.1
-  helm:
-    values: |-
-      prometheus-node-exporter:
-         hostRootFsMount:
-           enabled: false
-      prometheusOperator:
-         admissionWebhooks:
-           failurePolicy: Ignore
-  chart: kube-prometheus-stack
-destination:
-  server: 'https://kubernetes.default.svc'
-  namespace: monitoring
-syncPolicy:
-  syncOptions:
-    - ServerSideApply=true
-    - CreateNamespace=true
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps
+spec:
+  destination:
+    name: ''
+    namespace: ''
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: dev
+    repoURL: 'https://github.com/johncosta/gitops-examples'
+    targetRevision: HEAD
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
