@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: kube-prometheus-stack
+spec:
+  generators:
+    - app: 
+        name: kube-prometheus-stack
+        namespace: argocd
+        project: default
+        source:
+          repoURL: https://github.com/johncosta/gitops-examples
+          targetRevision: main
+          path: kube-prometheus-stack
+        destination:
+          server: https://kubernetes.default.svc
+          namespace: default
